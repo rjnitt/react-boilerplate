@@ -10,18 +10,24 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: './dev/js/index.js',
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loaders: ['babel'],
+                loader: ['babel-loader'],
                 exclude: /node_modules/
             },
             {
-                test: /\.scss/,
-                loader: 'style-loader!css-loader!sass-loader'
+                test: /\.scss$/,
+                use: [{
+                  loader: 'style-loader',
+                }, {
+                  loader: 'css-loader',
+                }, {
+                  loader: 'sass-loader',
+                }]
             }
-        ]
-    },
+          ]
+        },
     output: {
         path: 'src',
         filename: 'js/bundle.min.js'
